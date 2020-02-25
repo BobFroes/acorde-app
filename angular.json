@@ -123,5 +123,8 @@
       }
     }
   },
-  "defaultProject": "acorde-app"
+  "defaultProject": "acorde-app",
+  "cli": {
+    "analytics": "eaed13fb-1734-4daf-9340-1a39b092cd67"
+  }
 }
