@@ -10,8 +10,10 @@ import { Component, OnInit } from '@angular/core';
   ],
   template: `
   <mat-nav-list>
-    <h3 matSubheader>ÁREA DO ALUNO</h3>
-    <a mat-list-item routerLinkActive="active-link" routerLink="/students/alunos">Alunos</a>
+    <a mat-list-item routerLinkActive="active-link" routerLink="students">
+      <mat-icon mat-list-icon>people</mat-icon>
+      <h4 mat-line>Alunos</h4>
+    </a>
   </mat-nav-list>
 `
 })

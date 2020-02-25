@@ -1,15 +1,14 @@
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AppMaterialModule } from './app-material.module';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
-import { MaterialModule } from './material.module';
+import { NavigationMenuComponent } from './navigation-menu/navigation-menu.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { StudentModule } from './student/student.module';
-import { UserModule } from './user/user.module';
-import { NavigationMenuComponent } from './navigation-menu/navigation-menu.component';
 
 @NgModule({
   declarations: [
@@ -21,14 +20,14 @@ import { NavigationMenuComponent } from './navigation-menu/navigation-menu.compo
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    MaterialModule,
-    UserModule,
-    StudentModule,
+    AppMaterialModule,
     FormsModule,
     ReactiveFormsModule,
-    AppRoutingModule
+    AppRoutingModule,
+    StudentModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class AppModule { }

@@ -1,0 +1,39 @@
+<div class="filter-row">
+
+  <form style="margin-bottom: 32px">
+    <div fxLayout="row" fxLayout.lt-sm="column" fxLayoutGap="15px grid">
+      <div fxLayout.lt-sm="column" fxFlex>
+        <button style="height: 40px; margin: 10px 0;" matTooltip="Cadastrar Novo Aluno" mat-raised-button
+          color="primary">
+          <mat-icon>person_add</mat-icon>
+        </button>
+      </div>
+
+      <mat-form-field fxLayout.lt-sm="column" appearance="outline" fxFlex="70">
+        <mat-icon matPrefix>search</mat-icon>
+        <mat-label>Pesquise</mat-label>
+        <input matInput placeholder="Pesquise" aria-label="Search" [formControl]="search" autofocus />
+        <mat-hint>Pesquise por qualquer termo contido na tabela e precione ENTER</mat-hint>
+        <mat-error *ngIf="search.invalid">
+          Informe ao menos 3 caracteres
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field fxLayout.lt-sm="column" appearance="outline" fxFlex="30">
+        <mat-label>Situação</mat-label>
+        <mat-select>
+          <mat-option *ngFor="let type of this.Statuses" [value]="Status[type]">
+            {{ type }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+  </form>
+
+  <div class="mat-elevation-z8">
+    <table>
+
+    </table>
+  </div>
+
+</div>
