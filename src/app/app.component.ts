@@ -35,6 +35,12 @@ import { MediaObserver } from '@angular/flex-layout';
         border-radius: 50%;
         margin-top: -8px;
       }
+      .mat-mini-fab.mat-accent {
+        background-color: #3f51b5;
+      }
+      .mat-fab:not([class*=mat-elevation-z]), .mat-mini-fab:not([class*=mat-elevation-z]) {
+        box-shadow: none;
+      }
     `,
   ],
   template: `
@@ -43,9 +49,6 @@ import { MediaObserver } from '@angular/flex-layout';
         <button mat-icon-button (click)="sidenav.toggle()">
           <mat-icon>menu</mat-icon>
         </button>
-        <a mat-icon-button routerLink="/home">
-          <span class="mat-h2">Acorde</span>
-        </a>
         <span class="flex-spacer"></span>
         <button mat-mini-fab routerLink="/user/profile" matTooltip="Perfil" aria-label="User Profile">
           <mat-icon>account_circle</mat-icon>

@@ -1,7 +1,6 @@
 <div class="filter-row">
-
   <form style="margin-bottom: 32px">
-    <div fxLayout="row" fxLayout.lt-sm="column" fxLayoutGap="15px grid">
+    <div fxLayout="row" fxLayout.lt-sm="column" fxLayoutGap="15px">
       <div fxLayout.lt-sm="column" fxFlex>
         <button style="height: 40px; margin: 10px 0;" matTooltip="Cadastrar Novo Aluno" mat-raised-button
           color="primary">
@@ -12,16 +11,13 @@
       <mat-form-field fxLayout.lt-sm="column" appearance="outline" fxFlex="70">
         <mat-icon matPrefix>search</mat-icon>
         <mat-label>Pesquise</mat-label>
-        <input matInput placeholder="Pesquise" aria-label="Search" [formControl]="search" autofocus />
-        <mat-hint>Pesquise por qualquer termo contido na tabela e precione ENTER</mat-hint>
-        <mat-error *ngIf="search.invalid">
-          Informe ao menos 3 caracteres
-        </mat-error>
+        <input matInput aria-label="Search" [formControl]="search" autofocus />
+        <mat-hint>Pesquise por qualquer termo contido na tabela.</mat-hint>
       </mat-form-field>
 
       <mat-form-field fxLayout.lt-sm="column" appearance="outline" fxFlex="30">
         <mat-label>Situação</mat-label>
-        <mat-select>
+        <mat-select [formControl]="statusSelected">
           <mat-option *ngFor="let type of this.Statuses" [value]="Status[type]">
             {{ type }}
           </mat-option>
@@ -31,9 +27,69 @@
   </form>
 
   <div class="mat-elevation-z8">
-    <table>
+    <div class="loading-shade" *ngIf="loading$ | async as loading">
+      <mat-spinner *ngIf="loading"></mat-spinner>
+      <div class="error" *ngIf="hasError">
+        {{ errorText }}
+      </div>
+    </div>
+    <mat-table class="full-width" [dataSource]="items$ | async" matSort matSortActive="nome" matSortDirection="asc"
+      matSortDisableClear>
 
-    </table>
+      <ng-container matColumnDef="id">
+        <mat-header-cell fxHide.xs *matHeaderCellDef mat-sort-header fxFlex="10" fxLayoutAlign="start center"> ID
+        </mat-header-cell>
+        <mat-cell fxHide.xs *matCellDef="let row" fxFlex="10" fxLayoutAlign="start center">
+          {{ row.id }}
+        </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="nome">
+        <mat-header-cell *matHeaderCellDef mat-sort-header fxFlex.xs fxFlex="25" fxLayoutAlign="start center"> NOME
+        </mat-header-cell>
+        <mat-cell *matCellDef="let row" fxFlex.xs fxFlex="25" fxLayoutAlign="start center">
+          {{ row.nome }}
+        </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="cpf">
+        <mat-header-cell fxHide.xs *matHeaderCellDef mat-sort-header fxFlex="20" fxLayoutAlign="start center"> CPF
+        </mat-header-cell>
+        <mat-cell fxHide.xs *matCellDef="let row" fxFlex="20" fxLayoutAlign="start center">
+          {{ row.cpf | mask: '000.000.000-00' }} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="cidade">
+        <mat-header-cell fxHide.xs *matHeaderCellDef mat-sort-header fxFlex="20" fxLayoutAlign="start center"> CIDADE
+        </mat-header-cell>
+        <mat-cell fxHide.xs *matCellDef="let row" fxFlex="20" fxLayoutAlign="start center"> {{ row.cidade }} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="bairro">
+        <mat-header-cell fxHide.xs *matHeaderCellDef mat-sort-header fxFlex="10" fxLayoutAlign="start center"> BAIRRO
+        </mat-header-cell>
+        <mat-cell fxHide.xs *matCellDef="let row" fxFlex="10" fxLayoutAlign="start center"> {{ row.bairro }} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="acoes">
+        <mat-header-cell *matHeaderCellDef fxFlex.xs fxFlex="15" fxLayoutAlign="center center"> AÇÕES
+        </mat-header-cell>
+        <mat-cell *matCellDef="let row" fxFlex.xs fxFlex="15" fxLayoutAlign="center center">
+          <div fxLayout="row">
+            <button mat-icon-button color="primary">
+              <mat-icon>edit</mat-icon>
+            </button>
+            <button mat-icon-button color="warn">
+              <mat-icon>delete_forever</mat-icon>
+            </button>
+          </div>
+        </mat-cell>
+      </ng-container>
+
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns"> </mat-row>
+    </mat-table>
+    <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" [length]="resultsLength"></mat-paginator>
   </div>
 
 </div>

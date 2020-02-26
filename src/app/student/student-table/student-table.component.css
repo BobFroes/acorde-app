@@ -6,3 +6,11 @@
   min-height: 64px;
   padding: 8px 24px 0;
 }
+
+mat-cell:last-of-type, mat-header-cell:last-of-type, mat-footer-cell:last-of-type {
+    padding-right: 24px;
+}
+
+mat-cell:first-of-type, mat-header-cell:first-of-type, mat-footer-cell:first-of-type {
+    padding-left: 24px;
+}
