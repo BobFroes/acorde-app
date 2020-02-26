@@ -1,6 +1,8 @@
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { MatIconModule } from '@angular/material/icon';
 import { NavigationMenuComponent } from './navigation-menu.component';
+
 
 describe('NavigationMenuComponent', () => {
   let component: NavigationMenuComponent;
@@ -8,9 +10,12 @@ describe('NavigationMenuComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ NavigationMenuComponent ]
+      declarations: [NavigationMenuComponent],
+      imports: [MatIconModule],
+      schemas: [CUSTOM_ELEMENTS_SCHEMA]
+
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

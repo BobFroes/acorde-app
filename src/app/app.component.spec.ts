@@ -1,12 +1,17 @@
-import { TestBed, async } from '@angular/core/testing';
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { async, TestBed } from '@angular/core/testing';
+import { MatIconModule } from '@angular/material/icon';
 import { AppComponent } from './app.component';
+import { StudentTableComponent } from './student/student-table/student-table.component';
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [
-        AppComponent
+        AppComponent, StudentTableComponent
       ],
+      imports: [MatIconModule],
+      schemas: [CUSTOM_ELEMENTS_SCHEMA]
     }).compileComponents();
   }));
 
